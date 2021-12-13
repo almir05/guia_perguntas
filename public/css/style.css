@@ -5,3 +5,11 @@ body {
 #formulario-pergunta {
   margin-top: 5vh;
 }
+
+textarea {
+  resize: none;
+}
+
+.resposta{
+  margin-top: 8px;
+}
