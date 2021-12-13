@@ -32,13 +32,28 @@ app.get('/perguntar', (req, res) => {
 });
 
 app.post('/salvarpergunta', (req, res) => {
-  let titulo = req.body.titulo
-  let descricao = req.body.descricao
+  let titulo = req.body.titulo;
+  let descricao = req.body.descricao;
+
   Pergunta.create({
     titulo,
     descricao
   }).then(() => {
     res.redirect('/');
+  });
+});
+
+app.get('/pergunta/:id', (req, res) => {
+  let id = req.params.id;
+
+  Pergunta.findOne({
+    where: { id }
+  }).then(pergunta => {
+    if (pergunta != undefined) {
+      res.render('pergunta');
+    } else {
+      res.redirect('/');
+    }
   });
 });
 
