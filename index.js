@@ -60,4 +60,16 @@ app.get('/pergunta/:id', (req, res) => {
   });
 });
 
+app.post('/responder', (req, res) => {
+  let corpo = req.body.corpo;
+  let perguntaId = req.body.pergunta;
+
+  Resposta.create({
+    corpo,
+    perguntaId
+  }).then(() => {
+    res.redirect(`/pergunta/${perguntaId}`)
+  });
+});
+
 app.listen(8080, () => console.log('App rodando'));
